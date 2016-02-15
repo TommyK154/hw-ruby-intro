@@ -3,21 +3,27 @@
 # Part 1
 
 def sum arr
+  arr.empty? ? 0 : arr.inject(:+) 
+=begin
   return 0 if arr.empty?
   arr.inject(:+)  
+=end
 end
 
 def max_2_sum arr
+  (arr.length == 1) ? (arr[0]) : sum(arr.max(2))
+=begin  
   return 0 if arr.empty?
   return arr[0] if arr.length < 2
   arr.sort!
-  arr2 = arr.slice(-2, 2)
+  arr2 = arr.slice(-2, 2) #.max(2) to get 2 highest nums
   sum arr2
+=end
 end
 
 def sum_to_n?(arr, n)
   return false if arr.empty? or arr.length < 2
-  sum_hash = {}
+  sum_hash = {} 
   arr.each do |val|
     return true if sum_hash.has_key?(val)
     sum_hash[n-val] = val
@@ -33,19 +39,16 @@ end
 
 def starts_with_consonant? s
   s[0] =~ /[b-df-hj-np-tv-z]/i 
-  #a-z without vowels /i ignores captials
 end
 
 def binary_multiple_of_4? (s)
   return true if s == '0'
   s =~ /^[10]*00$/
-  # ^= beginning of string, $= end of string
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
   def initialize(isbn, price)
     raise ArgumentError if isbn.empty? or price <= 0
     @isbn = isbn
